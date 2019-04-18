@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private LinearLayout mBackgroundLinearLayout;
     private EditText etText;
     SharedPreferences sPref;
+    public static String name;
     final String SAVED_TEXT = "saved_text";
 
     @Override
@@ -48,7 +49,8 @@ public class MainActivity extends AppCompatActivity {
         }
         else
         {
-            Intent intent = new Intent(MainActivity.this, password.class);
+            name = etText.getText().toString();
+            Intent intent = new Intent(MainActivity.this, Password.class);
             startActivity(intent);
         }
     }

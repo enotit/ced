@@ -1,5 +1,6 @@
 package com.example.closereveryday;
 
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
@@ -9,9 +10,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
-public class password extends AppCompatActivity {
-    private EditText passwd;
-    public String password;
+public class Password extends AppCompatActivity {
+    public static EditText passwd;
+    public static String passwordId;
     private LinearLayout mBackgroundLinearLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +29,10 @@ public class password extends AppCompatActivity {
         passwd = (EditText) findViewById(R.id.khg);
     }
     public void onMyButtonClck(View view){
-       password = passwd.getText().toString();
+       passwordId = passwd.getText().toString();
+       if(passwordId.length() >= 4){
+        Intent intent = new Intent(this, password2.class);
+        startActivity(intent);
+       }
     }
 }

@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/logo_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".password2"></activity>
+        <activity android:name=".describe"></activity>
+        <activity android:name=".password2" />
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait">
@@ -20,8 +21,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".password"
-            android:screenOrientation="portrait"></activity>
+            android:name=".Password"
+            android:screenOrientation="portrait" />
 
         <meta-data
             android:name="preloaded_fonts"
