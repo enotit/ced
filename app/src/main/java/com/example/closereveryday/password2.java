@@ -44,11 +44,15 @@ public class password2 extends AppCompatActivity {
             pw.putString(SAVED_TEXT, raz);
             pw.commit();
             Intent intent = new Intent(this, describe.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
         } else {
             Toast.makeText(this, "Вы ввели неверный пароль.", Toast.LENGTH_LONG).show();
         finish();
         }}
 
+    }
+    void finishes(){
+        finish();
     }
     }

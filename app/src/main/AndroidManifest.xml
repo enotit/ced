@@ -9,8 +9,14 @@
         android:roundIcon="@mipmap/logo_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".describe"></activity>
-        <activity android:name=".password2" />
+        <activity android:name=".Mainy"
+            android:screenOrientation="portrait" ></activity>
+        <activity
+            android:name=".describe"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".password2"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait">

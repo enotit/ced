@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
         {
             name = etText.getText().toString();
             Intent intent = new Intent(MainActivity.this, Password.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
         }
     }
@@ -60,5 +61,8 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences.Editor ed = sPref.edit();
         ed.putString(SAVED_TEXT, etText.getText().toString());
         ed.commit();
+    }
+   void finishes(MainActivity mainActivity){
+        finish();
     }
 }

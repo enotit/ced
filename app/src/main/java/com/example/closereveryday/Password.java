@@ -32,7 +32,9 @@ public class Password extends AppCompatActivity {
        passwordId = passwd.getText().toString();
        if(passwordId.length() >= 4){
         Intent intent = new Intent(this, password2.class);
+        passwd.setText("");
         startActivity(intent);
+
        }
     }
 }
