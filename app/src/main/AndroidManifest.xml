@@ -9,11 +9,18 @@
         android:roundIcon="@mipmap/logo_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Mainy"
+        <activity android:name=".Main_Password"
             android:screenOrientation="portrait" ></activity>
+        <activity android:name=".Osnova"
+            android:screenOrientation="portrait" />
+        <activity android:name=".edit"
+            android:screenOrientation="portrait" />
         <activity
-            android:name=".describe"
-            android:screenOrientation="portrait"></activity>
+            android:name=".Mainy"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Describe"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".password2"
             android:screenOrientation="portrait" />

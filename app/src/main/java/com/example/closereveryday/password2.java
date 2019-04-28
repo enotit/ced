@@ -35,6 +35,8 @@ public class password2 extends AppCompatActivity {
     public void onMyButtonCl(View view){
         password = passwd.getText().toString();
         String raz = Password.passwordId;
+        if(password.length() == 0){}
+            else{
         if(raz.length() < 3 ){
             Toast.makeText(this, " Пароль слишком маленький", Toast.LENGTH_SHORT).show();
         }else{
@@ -43,13 +45,13 @@ public class password2 extends AppCompatActivity {
             SharedPreferences.Editor pw = sPref.edit();
             pw.putString(SAVED_TEXT, raz);
             pw.commit();
-            Intent intent = new Intent(this, describe.class);
+            Intent intent = new Intent(this, Describe.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
         } else {
             Toast.makeText(this, "Вы ввели неверный пароль.", Toast.LENGTH_LONG).show();
         finish();
-        }}
+        }}}
 
     }
     void finishes(){

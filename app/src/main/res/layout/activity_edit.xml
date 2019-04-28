@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".edit"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="5dp"
+        android:autoLink="web"
+        android:fontFamily="monospace"
+        android:gravity="center"
+        android:linksClickable="true"
+        android:text='Чтобы изменить, что-то изменяйте! Если, что-то не надо исправлять, то оставьте.'
+        android:textColor="@color/colorAccent"
+        android:textStyle="bold|italic" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="5dp"
+        android:autoLink="web"
+        android:fontFamily="monospace"
+        android:gravity="left"
+        android:linksClickable="true"
+        android:text="Имя"
+        android:textColor="@color/colorAccent"
+        android:textStyle="italic" />
+
+    <EditText
+        android:id="@+id/nameid2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="5dp"
+        android:ems="10"
+        android:inputType="textCapWords" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="5dp"
+        android:autoLink="web"
+        android:fontFamily="monospace"
+        android:gravity="left"
+        android:linksClickable="true"
+        android:text="Пароль"
+        android:textColor="@color/colorAccent"
+        android:textStyle="italic" />
+
+    <EditText
+        android:id="@+id/khg2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="5dp"
+        android:ems="10"
+        android:inputType="number" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="5dp"
+        android:autoLink="web"
+        android:fontFamily="monospace"
+        android:gravity="left"
+        android:linksClickable="true"
+        android:text="Описание"
+        android:textColor="@color/colorAccent"
+        android:textStyle="italic" />
+
+    <EditText
+        android:id="@+id/khg3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="5dp"
+        android:ems="10"
+        android:inputType="text|textCapSentences" />
+
+    <Button
+        android:id="@+id/button3"
+        style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onMyButtonClick"
+        android:text="Подтвердить" />
+</LinearLayout>
