@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import java.util.Date;
 
 public class Main_Password extends AppCompatActivity {
@@ -19,8 +20,11 @@ public class Main_Password extends AppCompatActivity {
     private LinearLayout mBackgroundLinearLayout;
     private EditText et;
     private int in;
-    private long millis, mil;
+    private long millis, mil, nin;
     private TextView tv;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,48 +37,62 @@ public class Main_Password extends AppCompatActivity {
         String de = sharedPreferences.getString("describe", "");
 
         TextView tv = findViewById(R.id.textView4);
-        tv.setText(de);
+        if(de == "") tv.setText("Описание отсутствует, измените в настройках.");
+        else tv.setText(de);
 
-
-        ps  = sharedPreferences.getString("password", "");
-
-        et = (EditText) findViewById(R.id.khg);
-
-        String jj = sharedPreferences.getString("block", "");
-        tv.setText(jj);
-       /* long nin = Long.valueOf(jj);
+        nin = sharedPreferences.getLong("block", 0);
         getDates();
-        if(mil > nin){
-            Toast.makeText(this, "Добро пожаловать", Toast.LENGTH_SHORT).show();
-        }else{
-            Toast.makeText(this, "Ждите, время ещё тикает...", Toast.LENGTH_SHORT).show();
-        finish();} */
-    }
+        if(millis > nin){}
+        else{
+            long ost = (nin - millis) / 60000;
+            if(ost == 0) Toast.makeText(this, "До окончания блокировки < минуты.", Toast.LENGTH_SHORT).show();
+            else{
+                if(ost == 1)
+                    Toast.makeText(this, "Подождите ещё 1 минуту.", Toast.LENGTH_SHORT).show();
+                if(ost == 2 || ost == 3 || ost == 4)
+                    Toast.makeText(this, "Подождите ещё " + ost + " минуты.", Toast.LENGTH_SHORT).show();
+
+            else
+                Toast.makeText(this, "error time", Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        }
+
+        }
+
     public void onMyButtonClick(View view){
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(Main_Password.this);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        ps  = sharedPreferences.getString("password", "");
+        et = (EditText) findViewById(R.id.khg);
         pasw = et.getText().toString();
         tv = findViewById(R.id.textView4);
 
-        if(ps.equals(pasw)){
-            Intent intent = new Intent(Main_Password.this, Osnova.class);
-            startActivity(intent); }
-            else{
-            Toast.makeText(this, "Неверный пароль.", Toast.LENGTH_SHORT).show();
-            in += 1;
-            et.setText("");
-            if(in == 3) tv.setText("Последняя попытка и блокировка на 5 минут.");
-            if (in == 3) {
-                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(Main_Password.this);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                getDates();
-                mil = millis + 300000;
-                bl = String.valueOf(mil);
-                editor.putString("block", bl);
 
+        nin = sharedPreferences.getLong("block", 0);
+        getDates();
+
+            if(pasw.equals(ps)){
+                Intent intent = new Intent(this, Osnova.class);
                 finish();
+                startActivity(intent);
+            }else{
+                in += 1;
+                et.setText("");
+                if(in == 1) Toast.makeText(this, "Неверный пароль", Toast.LENGTH_LONG).show();
+                if(in == 2) Toast.makeText(this, "Последняя попытка и блокировка на 5 минут.", Toast.LENGTH_SHORT).show();
+                if(in == 3){
+                getDates();
+                Toast.makeText(this, "Приложение заблокировано.", Toast.LENGTH_LONG).show();
+                millis += 300000;
+                editor.putLong("block", millis);
+                editor.apply();
+                finish();}
             }
-            }
+        }
 
-    }
+
+
     public void getDates(){
         Date date = new Date();
         millis = date.getTime();

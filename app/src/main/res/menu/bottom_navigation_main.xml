@@ -2,21 +2,21 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/action_favorite"
+        android:id="@+id/action_setting"
         android:enabled="true"
         android:icon="@drawable/ic_change"
         android:title="@string/text_favorites"
         app:showAsAction="ifRoom" />
 
     <item
-        android:id="@+id/action_collection"
+        android:id="@+id/action_aim"
         android:enabled="true"
         android:icon="@drawable/ic_second"
         android:title="@string/text_collection"
         app:showAsAction="ifRoom" />
 
     <item
-        android:id="@+id/action_friends"
+        android:id="@+id/action_money"
         android:enabled="true"
         android:icon="@drawable/ic_coin"
         android:title="@string/text_friends"
