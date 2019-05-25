@@ -89,6 +89,8 @@ public class Describe extends AppCompatActivity {
         editor.putString("name", MainActivity.name);
         editor.putString("password", Password.passwordId);
         editor.putString("describe", text);
+        editor.putBoolean("answer", true);
+        editor.putInt("lastid", 0);
         editor.apply();
     }
 }

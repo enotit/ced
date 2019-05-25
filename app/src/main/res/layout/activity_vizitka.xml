@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".vizitka">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginRight="5dp"
+                    android:id="@+id/imageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@mipmap/logo_dark" />
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+
+                    app:srcCompat="@drawable/logo" />
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="5dp"
+                    android:fontFamily="monospace"
+                    android:autoLink="web"
+                    android:linksClickable="true"
+                    android:text='Приложение создано учеником SAMSUNG IT SCHOOL Черниковым Андреем, с вдохновением challenge "Road To The Dream" by Игорь Войтенко.
+   \n
+   \n Контактная информация:
+   \n соц. сеть ВК: vk.com/enotit .
+   \n mail: mn1vitech@gmail.com '
+
+                    android:textColor="@color/colorAccent"
+                    android:textStyle="bold|italic" />
+
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="45dp"
+                    android:gravity="center|bottom"
+                    android:text="made by mn1v" />
+
+                <Button
+                    android:id="@+id/button6"
+                    android:layout_marginTop="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="VizOsn"
+                    style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
+                    android:text=" " />
+
+            </LinearLayout>
+        </ScrollView>
+
+    </FrameLayout>
+
+</LinearLayout>

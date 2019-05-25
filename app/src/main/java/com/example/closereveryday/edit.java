@@ -12,8 +12,8 @@ import android.widget.LinearLayout;
 
 public class edit extends AppCompatActivity {
     public EditText nameid, describe, password;
-    private LinearLayout mBackgroundLinearLayout;
     final String SAVED_TEXT = "saved_text";
+    private LinearLayout mBackgroundLinearLayout;
     SharedPreferences sPref;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +44,8 @@ public class edit extends AppCompatActivity {
         editor.putString("name", nameid.getText().toString());
         editor.putString("password", password.getText().toString());
         editor.putString("describe", describe   .getText().toString());
+        editor.putBoolean("answer", true);
+        editor.putInt("lastid", 0);
         editor.apply();
     }
 }

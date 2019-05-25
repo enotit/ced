@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">CED - Closer Every Day</string>
     <string name="text_favorites">Настройки</string>
-    <string name="text_collection">Цели</string>
+    <string name="text_collection">История</string>
     <string name="text_friends">Деньги</string>
     <string name="sett">Нажмите, чтобы изменить</string>
     <string name="change">Введите текст ниже</string>

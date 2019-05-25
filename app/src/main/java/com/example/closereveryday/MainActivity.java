@@ -1,5 +1,6 @@
 package com.example.closereveryday;
 
+import android.arch.persistence.room.Room;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
@@ -12,11 +13,15 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.example.closereveryday.db.AppDatabase;
+
 public class MainActivity extends AppCompatActivity {
 
     private LinearLayout mBackgroundLinearLayout;
     public EditText etText;
     public static String name;
+    public static MainActivity instance;
+    private AppDatabase database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +35,19 @@ public class MainActivity extends AppCompatActivity {
 
         int parsedColor = Color.parseColor("#E4E4E4");
         mBackgroundLinearLayout.setBackgroundColor(parsedColor);
+        instance = this;
+        database = Room.databaseBuilder(this, AppDatabase.class, "database")
+                .build();
+
+    }
+
+
+    public static MainActivity getInstance() {
+        return instance;
+    }
+
+    public AppDatabase getDatabase() {
+        return database;
     }
 
     public void onMyButtonClick(View view){
@@ -48,8 +66,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
-        String naming = sharedPreferences.getString("name", "");
-        if(naming != ""){
+        Boolean naming = sharedPreferences.getBoolean("answer", false);
+        if(naming){
             Intent intent = new Intent(MainActivity.this, Main_Password.class);
             startActivity(intent);
             finish();
