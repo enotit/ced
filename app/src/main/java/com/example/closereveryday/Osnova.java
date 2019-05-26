@@ -78,7 +78,7 @@ public class Osnova extends AppCompatActivity implements SomeDataRecyclerAdapter
         recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
         final LinearLayoutManager layoutManager = new LinearLayoutManager(Osnova.this);
         recyclerView.setLayoutManager(layoutManager);
-        databaseHelper = App.getInstance().getDatabaseInstance();
+        databaseHelper = App.getDatabaseInstance();
         ButterKnife.bind(this);
     }
 
@@ -180,7 +180,6 @@ public class Osnova extends AppCompatActivity implements SomeDataRecyclerAdapter
         if(opi.getText().toString().equals("") || kolvo.getText().toString().equals("") || kolvo.getText().toString().equals("0"))
             Toast.makeText(this, "Пожалуйста введите данные.", Toast.LENGTH_SHORT).show();
         else{
-            Toast.makeText(this, "dds", Toast.LENGTH_SHORT).show();
      salam = Integer.parseInt(kolvo.getText().toString());
        textnull();  }
     }
