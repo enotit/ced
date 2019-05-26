@@ -8,6 +8,8 @@ import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
@@ -15,22 +17,28 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.Toast;
 
-import com.example.closereveryday.db.AppDatabase;
-import com.example.closereveryday.db.Employee;
-import com.example.closereveryday.db.EmployeeDao;
+import com.example.closereveryday.adapter.SomeDataRecyclerAdapter;
+import com.example.closereveryday.db.DatabaseHelper;
+import com.example.closereveryday.db.model.DataModel;
 
-public class Osnova extends AppCompatActivity {
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
+public class Osnova extends AppCompatActivity implements SomeDataRecyclerAdapter.OnDeleteListener {
+
+    @BindView(R.id.recyclerView)
+    RecyclerView recyclerView;
+
+    private DatabaseHelper databaseHelper;
+
     public static EditText nameid, describe, password, opi, kolvo;
     public static String names, describes, passwords, np, dp, pp;
     final String SAVED_TEXT = "saved_text";
     public int salam, lastidd;
     public Boolean all;
-   //  ListView listView = (ListView) findViewById(R.id.listView);
+
     private LinearLayout mBackgroundLinearLayout;
     SharedPreferences sPref;
-    public   Employee employee = new Employee();
-    public AppDatabase db = MainActivity.getInstance().getDatabase();
-    public EmployeeDao employeeDao = db.employeeDao();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +72,26 @@ public class Osnova extends AppCompatActivity {
         opi = (EditText) findViewById(R.id.whyid);
         kolvo = (EditText) findViewById(R.id.kolvoid);
         kolvo.setText("0");
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false));
+        databaseHelper = App.getInstance().getDatabaseInstance();
+        ButterKnife.bind(this);
     }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        SomeDataRecyclerAdapter recyclerAdapter = new SomeDataRecyclerAdapter(this, databaseHelper.getDataDao().getAllData());
+        recyclerAdapter.setOnDeleteListener(this);
+        recyclerView.setAdapter(recyclerAdapter);
+    }
+
+    @Override
+    public void onDelete(DataModel dataModel) {
+        databaseHelper.getDataDao().delete(dataModel);
+    }
+
 
     @NonNull
     private BottomNavigationView.OnNavigationItemSelectedListener getBottomNavigationListener() {
@@ -158,10 +185,12 @@ public class Osnova extends AppCompatActivity {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(Osnova.this);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
-        employee.id = lastidd;
-        employee.why = opi.getText().toString();
-        employee.summa = salam;
-        employeeDao.insert(employee);
+        DatabaseHelper databaseHelper = App.getInstance().getDatabaseInstance();
+
+        DataModel model = new DataModel();
+        model.setTitle(salam);
+        model.setDescription(opi.getText().toString());
+        databaseHelper.getDataDao().insert(model);
 
         opi.setText("");
         kolvo.setText("0");
