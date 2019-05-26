@@ -25,8 +25,12 @@ public class Osnova extends AppCompatActivity {
     final String SAVED_TEXT = "saved_text";
     public int salam, lastidd;
     public Boolean all;
+   //  ListView listView = (ListView) findViewById(R.id.listView);
     private LinearLayout mBackgroundLinearLayout;
     SharedPreferences sPref;
+    public   Employee employee = new Employee();
+    public AppDatabase db = MainActivity.getInstance().getDatabase();
+    public EmployeeDao employeeDao = db.employeeDao();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,7 +129,7 @@ public class Osnova extends AppCompatActivity {
 
     }
     public void Help(View v){
-        Intent intent = new Intent(Osnova.this, sbros.class);
+       Intent intent = new Intent(Osnova.this, sbros.class);
         startActivity(intent);
     }
 
@@ -154,25 +158,15 @@ public class Osnova extends AppCompatActivity {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(Osnova.this);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
-        Employee employee = new Employee();
-        AppDatabase db = MainActivity.getInstance().getDatabase();
-        EmployeeDao employeeDao = db.employeeDao();
-
-        lastidd = sharedPreferences.getInt("lastid",0);
-
-
         employee.id = lastidd;
         employee.why = opi.getText().toString();
         employee.summa = salam;
         employeeDao.insert(employee);
 
         opi.setText("");
-        kolvo.setText("");
+        kolvo.setText("0");
         Toast.makeText(this, "Successful", Toast.LENGTH_SHORT).show();
 
-
-        editor.putInt("lastid", lastidd + 1);
-        editor.apply();
     }
 
 

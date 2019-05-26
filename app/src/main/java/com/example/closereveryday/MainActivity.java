@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         mBackgroundLinearLayout.setBackgroundColor(parsedColor);
         instance = this;
         database = Room.databaseBuilder(this, AppDatabase.class, "database")
+                .allowMainThreadQueries()
                 .build();
 
     }
