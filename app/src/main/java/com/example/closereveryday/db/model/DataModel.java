@@ -4,10 +4,6 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
-/**
- * Created by gleb on 11/15/17.
- */
-
 @Entity
 public class DataModel {
 
@@ -17,11 +13,11 @@ public class DataModel {
     private String description;
 
     @NonNull
-    public int getTitle() {
+    public Integer getTitle() {
         return title;
     }
 
-    public void setTitle(@NonNull int title) {
+    public void setTitle(@NonNull Integer title) {
         this.title = title;
     }
 

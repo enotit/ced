@@ -29,7 +29,7 @@ public class Osnova extends AppCompatActivity implements SomeDataRecyclerAdapter
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
 
-    private DatabaseHelper databaseHelper;
+    public DatabaseHelper databaseHelper;
 
     public static EditText nameid, describe, password, opi, kolvo;
     public static String names, describes, passwords, np, dp, pp;
@@ -40,12 +40,15 @@ public class Osnova extends AppCompatActivity implements SomeDataRecyclerAdapter
     private LinearLayout mBackgroundLinearLayout;
     SharedPreferences sPref;
 
+    public static App instance;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_osnova);
         getSupportActionBar().hide();
         setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
 
         BottomNavigationView bnv = (BottomNavigationView) findViewById(R.id.bottom_navigation);
         bnv.setOnNavigationItemSelectedListener(getBottomNavigationListener());
@@ -72,8 +75,9 @@ public class Osnova extends AppCompatActivity implements SomeDataRecyclerAdapter
         opi = (EditText) findViewById(R.id.whyid);
         kolvo = (EditText) findViewById(R.id.kolvoid);
         kolvo.setText("0");
-
-        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false));
+        recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
+        final LinearLayoutManager layoutManager = new LinearLayoutManager(Osnova.this);
+        recyclerView.setLayoutManager(layoutManager);
         databaseHelper = App.getInstance().getDatabaseInstance();
         ButterKnife.bind(this);
     }
@@ -184,8 +188,6 @@ public class Osnova extends AppCompatActivity implements SomeDataRecyclerAdapter
     public void textnull(){
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(Osnova.this);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-
-        DatabaseHelper databaseHelper = App.getInstance().getDatabaseInstance();
 
         DataModel model = new DataModel();
         model.setTitle(salam);
