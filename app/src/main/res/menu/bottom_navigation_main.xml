@@ -1,24 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
     <item
-        android:id="@+id/action_setting"
+        android:id="@+id/action_help"
         android:enabled="true"
         android:icon="@drawable/ic_change"
-        android:title="@string/text_favorites"
+        android:title="Информация"
         app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/action_aim"
         android:enabled="true"
         android:icon="@drawable/ic_time"
-        android:title="@string/text_collection"
+        android:title="История"
         app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/action_money"
         android:enabled="true"
         android:icon="@drawable/ic_coin"
-        android:title="@string/text_friends"
+        android:title="Регистрация"
         app:showAsAction="ifRoom" />
 </menu>

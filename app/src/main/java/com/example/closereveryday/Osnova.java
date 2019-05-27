@@ -106,7 +106,7 @@ public class Osnova extends AppCompatActivity implements SomeDataRecyclerAdapter
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
-                    case R.id.action_setting:
+                    case R.id.action_help:
                         sett.setVisibility(View.VISIBLE);
                         money.setVisibility(View.GONE);
                         two.setVisibility(View.GONE);
@@ -171,7 +171,7 @@ public class Osnova extends AppCompatActivity implements SomeDataRecyclerAdapter
                 Toast.makeText(this, "Пожалуйста введите данные.", Toast.LENGTH_SHORT).show();
             else{
         salam = Integer.parseInt(kolvo.getText().toString());
-        salam = salam * (-1);
+        salam = salam ; //* (-1);
         textnull();
             }
     }
