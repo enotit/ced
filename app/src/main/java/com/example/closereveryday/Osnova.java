@@ -41,7 +41,7 @@ public class Osnova extends AppCompatActivity implements SomeDataRecyclerAdapter
     SharedPreferences sPref;
 
     public static App instance;
-
+    public SomeDataRecyclerAdapter recyclerAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,21 +72,23 @@ public class Osnova extends AppCompatActivity implements SomeDataRecyclerAdapter
 
         bnv.setSelectedItemId(R.id.action_money);
 
+        ButterKnife.bind(this);
+
         opi = (EditText) findViewById(R.id.whyid);
         kolvo = (EditText) findViewById(R.id.kolvoid);
         kolvo.setText("0");
         recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
         final LinearLayoutManager layoutManager = new LinearLayoutManager(Osnova.this);
         recyclerView.setLayoutManager(layoutManager);
-        databaseHelper = App.getDatabaseInstance();
-        ButterKnife.bind(this);
+        databaseHelper = App.getInstance().getDatabaseInstance();
+
+        recyclerAdapter = new SomeDataRecyclerAdapter(this, databaseHelper.getDataDao().getAllData());
     }
 
 
     @Override
     protected void onResume() {
         super.onResume();
-        SomeDataRecyclerAdapter recyclerAdapter = new SomeDataRecyclerAdapter(this, databaseHelper.getDataDao().getAllData());
         recyclerAdapter.setOnDeleteListener(this);
         recyclerView.setAdapter(recyclerAdapter);
     }
@@ -113,6 +115,7 @@ public class Osnova extends AppCompatActivity implements SomeDataRecyclerAdapter
                         break;
 
                     case R.id.action_aim:
+                        recyclerAdapter.notifyDataSetChanged();
                         sett.setVisibility(View.GONE);
                         money.setVisibility(View.GONE);
                         two.setVisibility(View.VISIBLE);
@@ -171,7 +174,7 @@ public class Osnova extends AppCompatActivity implements SomeDataRecyclerAdapter
                 Toast.makeText(this, "Пожалуйста введите данные.", Toast.LENGTH_SHORT).show();
             else{
         salam = Integer.parseInt(kolvo.getText().toString());
-        salam = salam ; //* (-1);
+        salam = salam * (-1);
         textnull();
             }
     }
@@ -192,7 +195,6 @@ public class Osnova extends AppCompatActivity implements SomeDataRecyclerAdapter
         model.setTitle(salam);
         model.setDescription(opi.getText().toString());
         databaseHelper.getDataDao().insert(model);
-
         opi.setText("");
         kolvo.setText("0");
         Toast.makeText(this, "Successful", Toast.LENGTH_SHORT).show();

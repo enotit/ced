@@ -16,7 +16,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class SomeDataRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
+public class  SomeDataRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
     private List<DataModel> dataModels = new ArrayList<>();
     private OnDeleteListener onDeleteListener;

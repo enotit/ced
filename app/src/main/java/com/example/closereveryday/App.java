@@ -23,6 +23,7 @@ public class App extends Application {
         db = Room.databaseBuilder(getApplicationContext(), DatabaseHelper.class, "data-database")
                 .allowMainThreadQueries()
                 .build();
+
     }
 
     public static DatabaseHelper getDatabaseInstance() {
