@@ -17,11 +17,12 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class  SomeDataRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
+public class SomeDataRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
-    private List<DataModel> dataModels = new ArrayList<>();
+    private List<DataModel> dataModels;
     private OnDeleteListener onDeleteListener;
     private Context context;
+
     public SomeDataRecyclerAdapter(Context context, List<DataModel> dataModels) {
         this.context = context;
         this.dataModels = dataModels;
@@ -75,5 +76,13 @@ public class  SomeDataRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
 
     public interface OnDeleteListener {
         void onDelete(DataModel dataModel);
+    }
+
+    public void addItem(DataModel item) {
+        dataModels.add(item);
+    }
+
+    public void removeItem(DataModel item) {
+        dataModels.remove(item);
     }
 }

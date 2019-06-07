@@ -99,6 +99,8 @@ public class Base extends AppCompatActivity implements SomeDataRecyclerAdapter.O
     @Override
     public void onDelete(DataModel dataModel) {
         databaseHelper.getDataDao().delete(dataModel);
+        recyclerAdapter.addItem(dataModel);
+        recyclerAdapter.notifyDataSetChanged();
     }
 
 
@@ -201,6 +203,8 @@ public class Base extends AppCompatActivity implements SomeDataRecyclerAdapter.O
         model.setDescription(opi.getText().toString());
         model.setTim(tms);
         databaseHelper.getDataDao().insert(model);
+        recyclerAdapter.addItem(model);
+        recyclerAdapter.notifyDataSetChanged();
         opi.setText("");
         kolvo.setText("0");
         Toast.makeText(this, "Successful, return app pls", Toast.LENGTH_SHORT).show();

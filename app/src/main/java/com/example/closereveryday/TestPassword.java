@@ -5,6 +5,7 @@ import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -18,20 +19,20 @@ public class TestPassword extends AppCompatActivity {
         setContentView(R.layout.activity_test_passsword);
         getSupportActionBar().hide();
         et = findViewById(R.id.khg);
-    }
-    public void onMyButtonClick(View v) {
-        if(et.getText().toString() == "") {
-            Toast.makeText(this, "Введите ваш пароль.", Toast.LENGTH_SHORT).show();
-        } else {
-            if(Base.passwords.equals(et.getText().toString())){
-                saveText();
-                Toast.makeText(this, "successful", Toast.LENGTH_SHORT).show();
-                finish();
+        Button button = findViewById(R.id.button2);
+        button.setOnClickListener((v) -> {
+            if(et.getText().toString().equals("")) {
+                Toast.makeText(this, "Введите ваш пароль.", Toast.LENGTH_SHORT).show();
             } else {
-                finish();
+                if(Base.passwords.equals(et.getText().toString())){
+                    saveText();
+                    Toast.makeText(this, "successful", Toast.LENGTH_SHORT).show();
+                    finish();
+                } else {
+                    finish();
+                }
             }
-        }
-
+        });
     }
 
     public void saveText() {
