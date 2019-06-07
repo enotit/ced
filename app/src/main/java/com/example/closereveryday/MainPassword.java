@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 import java.util.Date;
 
-public class Main_Password extends AppCompatActivity {
+public class MainPassword extends AppCompatActivity {
 
     private String ps, pasw, bl, jj;
     private LinearLayout mBackgroundLinearLayout;
@@ -33,7 +33,7 @@ public class Main_Password extends AppCompatActivity {
         setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_main__password);
 
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(Main_Password.this);
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(MainPassword.this);
         String de = sharedPreferences.getString("describe", "");
 
         TextView tv = findViewById(R.id.textView4);
@@ -61,7 +61,7 @@ public class Main_Password extends AppCompatActivity {
         }
 
     public void onMyButtonClick(View view){
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(Main_Password.this);
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(MainPassword.this);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         ps  = sharedPreferences.getString("password", "");
         et = (EditText) findViewById(R.id.khg);
@@ -73,7 +73,7 @@ public class Main_Password extends AppCompatActivity {
         getDates();
 
             if(pasw.equals(ps)){
-                Intent intent = new Intent(this, Osnova.class);
+                Intent intent = new Intent(this, Base.class);
                 finish();
                 startActivity(intent);
             }else{
@@ -99,7 +99,7 @@ public class Main_Password extends AppCompatActivity {
     }
 
     public void Help(View v){
-        Intent intent = new Intent(Main_Password.this, sbros.class);
+        Intent intent = new Intent(MainPassword.this, Reset.class);
         startActivity(intent);
     }
 

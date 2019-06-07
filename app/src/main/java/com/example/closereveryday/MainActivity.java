@@ -1,10 +1,8 @@
 package com.example.closereveryday;
 
-import android.arch.persistence.room.Room;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
@@ -51,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
         Boolean naming = sharedPreferences.getBoolean("answer", false);
         if(naming){
-            Intent intent = new Intent(MainActivity.this, Main_Password.class);
+            Intent intent = new Intent(MainActivity.this, MainPassword.class);
             startActivity(intent);
             finish();
         }

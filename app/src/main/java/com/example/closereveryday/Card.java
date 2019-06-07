@@ -8,8 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-public class vizitka extends AppCompatActivity {
-
+public class Card extends AppCompatActivity {
     MediaPlayer mPlayer;
 
     @Override
@@ -19,29 +18,24 @@ public class vizitka extends AppCompatActivity {
         getSupportActionBar().hide();
         setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         Toast.makeText(this, "Внимание. Музыка. ", Toast.LENGTH_SHORT).show();
-        Button button = (Button) findViewById(R.id.button6);
+        Button button = findViewById(R.id.button6);
         button.setText("<");
-        mus();
+        startMusic();
     }
 
     public void VizOsn(View v) {
-        stope();
+        finish();
     }
 
     @Override
     protected void onDestroy() {
-        super.onDestroy();
-        stope();
-    }
-
-
-    public void mus(){
-        mPlayer=MediaPlayer.create(this, R.raw.music);
-        mPlayer.start();
-    }
-
-    public void stope(){
-        finish();
         mPlayer.stop();
+        super.onDestroy();
+    }
+
+
+    public void startMusic() {
+        mPlayer = MediaPlayer.create(this, R.raw.music);
+        mPlayer.start();
     }
 }

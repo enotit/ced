@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".Osnova">
+    tools:context=".Base">
 
 
     <ScrollView
@@ -190,7 +190,7 @@
                 style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:onClick="onMyButtonClick"
+                android:onClick="onMyButtonClicked"
                 android:text="Подтвердить" />
 
             <Button

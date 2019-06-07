@@ -75,11 +75,11 @@ public class Describe extends AppCompatActivity {
     }
 
     public void edits(){
-        Intent intent = new Intent(this, edit.class);
+        Intent intent = new Intent(this, Edit.class);
         startActivity(intent);
     }
     public void nextAct(){
-        Intent intent = new Intent(this, Osnova.class);
+        Intent intent = new Intent(this, Base.class);
         startActivity(intent);
     }
 

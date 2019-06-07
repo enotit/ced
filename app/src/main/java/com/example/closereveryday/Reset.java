@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-public class sbros extends AppCompatActivity {
+public class Reset extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

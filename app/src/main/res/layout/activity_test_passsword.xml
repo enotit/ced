@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".test_passsword"
+    tools:context=".TestPassword"
     android:orientation="vertical">
 
     <ScrollView
@@ -48,7 +48,7 @@
                 style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:onClick="onMyButtonClick"
+                android:onClick="onMyButtonClicked"
                 android:text="Подтвердить" />
 
 

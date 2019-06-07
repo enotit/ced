@@ -11,7 +11,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-public class password2 extends AppCompatActivity {
+public class Password2 extends AppCompatActivity {
     private LinearLayout mBackgroundLinearLayout;
     private EditText passwd;
     public String password;
@@ -29,32 +29,32 @@ public class password2 extends AppCompatActivity {
 
         int parsedColor = Color.parseColor("#E4E4E4");
         mBackgroundLinearLayout.setBackgroundColor(parsedColor);
-        passwd = (EditText) findViewById(R.id.khg);
+        passwd = findViewById(R.id.khg);
     }
 
-    public void onMyButtonCl(View view){
+    public void onMyButtonClicked(View view){
         password = passwd.getText().toString();
         String raz = Password.passwordId;
-        if(password.length() == 0){}
-            else{
-        if(raz.length() < 3 ){
-            Toast.makeText(this, " Пароль слишком маленький", Toast.LENGTH_SHORT).show();
-        }else{
-        if(password.equals(raz)){
-            sPref = getPreferences(MODE_PRIVATE);
-            SharedPreferences.Editor pw = sPref.edit();
-            pw.putString(SAVED_TEXT, raz);
-            pw.commit();
-            Intent intent = new Intent(this, Describe.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(intent);
-        } else {
-            Toast.makeText(this, "Вы ввели неверный пароль.", Toast.LENGTH_LONG).show();
-        finish();
-        }}}
-
+        if(password.length() != 0) {
+            if(raz.length() < 3 ){
+                Toast.makeText(this, " Пароль слишком маленький", Toast.LENGTH_SHORT).show();
+            } else {
+                if(password.equals(raz)) {
+                    sPref = getPreferences(MODE_PRIVATE);
+                    SharedPreferences.Editor pw = sPref.edit();
+                    pw.putString(SAVED_TEXT, raz);
+                    pw.commit();
+                    Intent intent = new Intent(this, Describe.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(this, "Вы ввели неверный пароль.", Toast.LENGTH_LONG).show();
+                    finish();
+                }
+            }
+        }
     }
     void finishes(){
         finish();
-    }
-    }
+    } //FIXME need this really?
+}

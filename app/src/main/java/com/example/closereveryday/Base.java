@@ -26,7 +26,7 @@ import java.util.Date;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class Osnova extends AppCompatActivity implements SomeDataRecyclerAdapter.OnDeleteListener {
+public class Base extends AppCompatActivity implements SomeDataRecyclerAdapter.OnDeleteListener {
 
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
@@ -56,7 +56,7 @@ public class Osnova extends AppCompatActivity implements SomeDataRecyclerAdapter
         BottomNavigationView bnv = (BottomNavigationView) findViewById(R.id.bottom_navigation);
         bnv.setOnNavigationItemSelectedListener(getBottomNavigationListener());
 
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(Osnova.this);
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(Base.this);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
         mBackgroundLinearLayout = (LinearLayout) findViewById(R.id.linearLayout);
@@ -81,7 +81,7 @@ public class Osnova extends AppCompatActivity implements SomeDataRecyclerAdapter
         kolvo = (EditText) findViewById(R.id.kolvoid);
         kolvo.setText("0");
         recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
-        final LinearLayoutManager layoutManager = new LinearLayoutManager(Osnova.this);
+        final LinearLayoutManager layoutManager = new LinearLayoutManager(Base.this);
         recyclerView.setLayoutManager(layoutManager);
         databaseHelper = App.getInstance().getDatabaseInstance();
 
@@ -141,7 +141,7 @@ public class Osnova extends AppCompatActivity implements SomeDataRecyclerAdapter
 
     public void onMyButtonClick(View v) {
         all = true;
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(Osnova.this);
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(Base.this);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         names = sharedPreferences.getString("name","");
         passwords = sharedPreferences.getString("password", "");
@@ -149,24 +149,25 @@ public class Osnova extends AppCompatActivity implements SomeDataRecyclerAdapter
         np = nameid.getText().toString();
         dp = password.getText().toString();
         pp = describe.getText().toString();
+        if(!names.equals(np) && !describes.equals(pp) && !passwords.equals(dp)) {
+            all = false;
+        }
 
-            if(names.equals(np) & describes.equals(pp) & passwords.equals(dp)){
-                }
-            else all = false;
-
-        if(all){
+        if(all) {
             Toast.makeText(this, "Вы ничего не изменили.", Toast.LENGTH_SHORT).show();
-        }else{
-            Intent intent = new Intent(Osnova.this, test_passsword.class);
+        } else {
+            Intent intent = new Intent(Base.this, TestPassword.class);
             startActivity(intent);
-        }}
+        }
+    }
+
     public void VizOsn(View v) {
-        Intent intent = new Intent(Osnova.this, vizitka.class);
+        Intent intent = new Intent(Base.this, Card.class);
         startActivity(intent);
 
     }
     public void Help(View v){
-       Intent intent = new Intent(Osnova.this, sbros.class);
+       Intent intent = new Intent(Base.this, Reset.class);
         startActivity(intent);
     }
 
@@ -183,15 +184,16 @@ public class Osnova extends AppCompatActivity implements SomeDataRecyclerAdapter
     }
 
     public void prihodClick(View v){
-        if(opi.getText().toString().equals("") || kolvo.getText().toString().equals("") || kolvo.getText().toString().equals("0"))
+        if(opi.getText().toString().equals("") || kolvo.getText().toString().equals("") || kolvo.getText().toString().equals("0")) {
             Toast.makeText(this, "Пожалуйста введите данные.", Toast.LENGTH_SHORT).show();
-        else{
-     salam = Integer.parseInt(kolvo.getText().toString());
-       textnull();  }
+        } else {
+            salam = Integer.parseInt(kolvo.getText().toString());
+            textnull();
+        }
     }
 
     public void textnull(){
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(Osnova.this);
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(Base.this);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         getDates();
         DataModel model = new DataModel();
@@ -202,9 +204,7 @@ public class Osnova extends AppCompatActivity implements SomeDataRecyclerAdapter
         opi.setText("");
         kolvo.setText("0");
         Toast.makeText(this, "Successful, return app pls", Toast.LENGTH_SHORT).show();
-
     }
-
 
     public void getDates(){
         Date date = new Date();
