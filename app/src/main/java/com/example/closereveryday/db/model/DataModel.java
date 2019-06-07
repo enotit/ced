@@ -14,7 +14,8 @@ public class DataModel {
     private Integer title;
     @ColumnInfo
     private String description;
-
+    @ColumnInfo
+    private String tim;
 
     @NonNull
     public Integer getTitle() {
@@ -28,8 +29,14 @@ public class DataModel {
     public String getDescription() {
         return description;
     }
-
     public void setDescription(String description) {
         this.description = description;
+    }
+    public String getTim() {
+        return tim;
+    }
+
+    public void setTim(String tim) {
+        this.tim = tim;
     }
 }

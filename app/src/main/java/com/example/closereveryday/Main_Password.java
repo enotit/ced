@@ -98,4 +98,9 @@ public class Main_Password extends AppCompatActivity {
         millis = date.getTime();
     }
 
+    public void Help(View v){
+        Intent intent = new Intent(Main_Password.this, sbros.class);
+        startActivity(intent);
+    }
+
 }

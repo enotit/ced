@@ -21,6 +21,8 @@ import com.example.closereveryday.adapter.SomeDataRecyclerAdapter;
 import com.example.closereveryday.db.DatabaseHelper;
 import com.example.closereveryday.db.model.DataModel;
 
+import java.util.Date;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -32,10 +34,11 @@ public class Osnova extends AppCompatActivity implements SomeDataRecyclerAdapter
     public DatabaseHelper databaseHelper;
 
     public static EditText nameid, describe, password, opi, kolvo;
-    public static String names, describes, passwords, np, dp, pp;
+    public static String names, describes, passwords, np, dp, pp,tms;
     final String SAVED_TEXT = "saved_text";
     public int salam, lastidd;
     public Boolean all;
+
 
     private LinearLayout mBackgroundLinearLayout;
     SharedPreferences sPref;
@@ -134,7 +137,7 @@ public class Osnova extends AppCompatActivity implements SomeDataRecyclerAdapter
     }
 
 
-    // 1 page
+
 
     public void onMyButtonClick(View v) {
         all = true;
@@ -190,18 +193,22 @@ public class Osnova extends AppCompatActivity implements SomeDataRecyclerAdapter
     public void textnull(){
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(Osnova.this);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-
+        getDates();
         DataModel model = new DataModel();
         model.setTitle(salam);
         model.setDescription(opi.getText().toString());
+        model.setTim(tms);
         databaseHelper.getDataDao().insert(model);
         opi.setText("");
         kolvo.setText("0");
-        Toast.makeText(this, "Successful", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Successful, return app pls", Toast.LENGTH_SHORT).show();
 
     }
 
 
-
+    public void getDates(){
+        Date date = new Date();
+        tms = date.toString();
+    }
 
 }
