@@ -1,6 +1,7 @@
 package com.example.closereveryday.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,12 +17,11 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class SomeDataRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
+public class  SomeDataRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
     private List<DataModel> dataModels = new ArrayList<>();
     private OnDeleteListener onDeleteListener;
     private Context context;
-
     public SomeDataRecyclerAdapter(Context context, List<DataModel> dataModels) {
         this.context = context;
         this.dataModels = dataModels;
@@ -36,8 +36,12 @@ public class SomeDataRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
     @Override
     public void onBindViewHolder(final RecyclerView.ViewHolder holder, final int position) {
         final NewsViewHolder viewHolder = (NewsViewHolder) holder;
-        viewHolder.title.setText(dataModels.get(position).getTitle());
-        viewHolder.description.setText(dataModels.get(position).getDescription());
+        if(dataModels.get(position).getTitle() < 0){
+            viewHolder.title.setTextColor(Color.RED);
+            viewHolder.title.setText(dataModels.get(position).getTitle().toString());
+        }else{ viewHolder.title.setTextColor(Color.DKGRAY);
+       viewHolder.title.setText("+" + dataModels.get(position).getTitle().toString());}
+        viewHolder.description.setText(dataModels.get(position).getDescription() + " \n " + dataModels.get(position).getTim());
     }
 
     @Override

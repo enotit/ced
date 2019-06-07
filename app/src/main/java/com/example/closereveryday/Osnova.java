@@ -21,6 +21,8 @@ import com.example.closereveryday.adapter.SomeDataRecyclerAdapter;
 import com.example.closereveryday.db.DatabaseHelper;
 import com.example.closereveryday.db.model.DataModel;
 
+import java.util.Date;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -32,16 +34,17 @@ public class Osnova extends AppCompatActivity implements SomeDataRecyclerAdapter
     public DatabaseHelper databaseHelper;
 
     public static EditText nameid, describe, password, opi, kolvo;
-    public static String names, describes, passwords, np, dp, pp;
+    public static String names, describes, passwords, np, dp, pp,tms;
     final String SAVED_TEXT = "saved_text";
     public int salam, lastidd;
     public Boolean all;
+
 
     private LinearLayout mBackgroundLinearLayout;
     SharedPreferences sPref;
 
     public static App instance;
-
+    public SomeDataRecyclerAdapter recyclerAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,6 +75,8 @@ public class Osnova extends AppCompatActivity implements SomeDataRecyclerAdapter
 
         bnv.setSelectedItemId(R.id.action_money);
 
+        ButterKnife.bind(this);
+
         opi = (EditText) findViewById(R.id.whyid);
         kolvo = (EditText) findViewById(R.id.kolvoid);
         kolvo.setText("0");
@@ -79,14 +84,14 @@ public class Osnova extends AppCompatActivity implements SomeDataRecyclerAdapter
         final LinearLayoutManager layoutManager = new LinearLayoutManager(Osnova.this);
         recyclerView.setLayoutManager(layoutManager);
         databaseHelper = App.getInstance().getDatabaseInstance();
-        ButterKnife.bind(this);
+
+        recyclerAdapter = new SomeDataRecyclerAdapter(this, databaseHelper.getDataDao().getAllData());
     }
 
 
     @Override
     protected void onResume() {
         super.onResume();
-        SomeDataRecyclerAdapter recyclerAdapter = new SomeDataRecyclerAdapter(this, databaseHelper.getDataDao().getAllData());
         recyclerAdapter.setOnDeleteListener(this);
         recyclerView.setAdapter(recyclerAdapter);
     }
@@ -106,13 +111,14 @@ public class Osnova extends AppCompatActivity implements SomeDataRecyclerAdapter
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
-                    case R.id.action_setting:
+                    case R.id.action_help:
                         sett.setVisibility(View.VISIBLE);
                         money.setVisibility(View.GONE);
                         two.setVisibility(View.GONE);
                         break;
 
                     case R.id.action_aim:
+                        recyclerAdapter.notifyDataSetChanged();
                         sett.setVisibility(View.GONE);
                         money.setVisibility(View.GONE);
                         two.setVisibility(View.VISIBLE);
@@ -131,7 +137,7 @@ public class Osnova extends AppCompatActivity implements SomeDataRecyclerAdapter
     }
 
 
-    // 1 page
+
 
     public void onMyButtonClick(View v) {
         all = true;
@@ -180,7 +186,6 @@ public class Osnova extends AppCompatActivity implements SomeDataRecyclerAdapter
         if(opi.getText().toString().equals("") || kolvo.getText().toString().equals("") || kolvo.getText().toString().equals("0"))
             Toast.makeText(this, "Пожалуйста введите данные.", Toast.LENGTH_SHORT).show();
         else{
-            Toast.makeText(this, "dds", Toast.LENGTH_SHORT).show();
      salam = Integer.parseInt(kolvo.getText().toString());
        textnull();  }
     }
@@ -188,19 +193,22 @@ public class Osnova extends AppCompatActivity implements SomeDataRecyclerAdapter
     public void textnull(){
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(Osnova.this);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-
+        getDates();
         DataModel model = new DataModel();
         model.setTitle(salam);
         model.setDescription(opi.getText().toString());
+        model.setTim(tms);
         databaseHelper.getDataDao().insert(model);
-
         opi.setText("");
         kolvo.setText("0");
-        Toast.makeText(this, "Successful", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Successful, return app pls", Toast.LENGTH_SHORT).show();
 
     }
 
 
-
+    public void getDates(){
+        Date date = new Date();
+        tms = date.toString();
+    }
 
 }

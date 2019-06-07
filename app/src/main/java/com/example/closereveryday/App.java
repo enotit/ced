@@ -10,7 +10,7 @@ import com.example.closereveryday.db.DatabaseHelper;
 public class App extends Application {
 
     private static App instance;
-    private DatabaseHelper db;
+    private static DatabaseHelper db;
 
     public static App getInstance() {
         return instance;
@@ -23,9 +23,10 @@ public class App extends Application {
         db = Room.databaseBuilder(getApplicationContext(), DatabaseHelper.class, "data-database")
                 .allowMainThreadQueries()
                 .build();
+
     }
 
-    public DatabaseHelper getDatabaseInstance() {
+    public static DatabaseHelper getDatabaseInstance() {
         return db;
     }
 }
