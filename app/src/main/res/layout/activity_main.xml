@@ -69,7 +69,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="60dp"
                     android:layout_marginRight="5dp"
-                    android:onClick="onMyButtonClick"
+                    android:onClick="onMyButtonClicked"
                     android:text="Далее" />
 
                 <TextView

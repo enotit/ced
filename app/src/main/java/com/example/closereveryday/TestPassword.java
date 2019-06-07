@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class test_passsword extends AppCompatActivity {
+public class TestPassword extends AppCompatActivity {
 
     private EditText et;
 
@@ -20,26 +20,26 @@ public class test_passsword extends AppCompatActivity {
         et = findViewById(R.id.khg);
     }
     public void onMyButtonClick(View v) {
-        if(et.getText().toString() == ""){
+        if(et.getText().toString() == "") {
             Toast.makeText(this, "Введите ваш пароль.", Toast.LENGTH_SHORT).show();
-        }else{
-            if(Osnova.passwords.equals(et.getText().toString())){
+        } else {
+            if(Base.passwords.equals(et.getText().toString())){
                 saveText();
                 Toast.makeText(this, "successful", Toast.LENGTH_SHORT).show();
                 finish();
-            }else{
+            } else {
                 finish();
             }
         }
 
     }
 
-    public  void saveText() {
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(test_passsword.this);
+    public void saveText() {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(TestPassword.this);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("name", Osnova.nameid.getText().toString());
-        editor.putString("password", Osnova.password.getText().toString());
-        editor.putString("describe", Osnova.describe.getText().toString());
+        editor.putString("name", Base.nameid.getText().toString());
+        editor.putString("password", Base.password.getText().toString());
+        editor.putString("describe", Base.describe.getText().toString());
         editor.apply();
     }
 

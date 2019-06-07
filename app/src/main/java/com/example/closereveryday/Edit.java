@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
-public class edit extends AppCompatActivity {
+public class Edit extends AppCompatActivity {
     public EditText nameid, describe, password;
     final String SAVED_TEXT = "saved_text";
     private LinearLayout mBackgroundLinearLayout;
@@ -35,11 +35,11 @@ public class edit extends AppCompatActivity {
     }
     public void onMyButtonClick(View v) {
        saveText();
-        Intent intent = new Intent(edit.this,Osnova.class);
+        Intent intent = new Intent(Edit.this, Base.class);
         startActivity(intent);
     }
     void saveText() {
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(edit.this);
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(Edit.this);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("name", nameid.getText().toString());
         editor.putString("password", password.getText().toString());
