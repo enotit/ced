@@ -58,7 +58,4 @@ public class Password2 extends AppCompatActivity {
         }
     }
 
-    void finishes(){
-        finish();
-    } //FIXME need this really?
 }

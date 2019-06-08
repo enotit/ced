@@ -36,7 +36,7 @@ public class Base extends AppCompatActivity implements SomeDataRecyclerAdapter.O
     public static EditText nameid, describe, password, opi, kolvo;
     public static String names, describes, passwords, np, dp, pp,tms;
     final String SAVED_TEXT = "saved_text";
-    public int salam, lastidd;
+    public int salam, money;
     public Boolean all;
 
 
@@ -139,6 +139,21 @@ public class Base extends AppCompatActivity implements SomeDataRecyclerAdapter.O
     }
 
 
+    public void onCliclMoney(View v) {
+        money = Integer.parseInt(kolvo.getText().toString());
+        switch(v.getId()) {
+            case R.id.plus_ten:
+                money += 10;
+                break;
+            case  R.id.plus_hundred:
+                money += 100;
+                break;
+            case  R.id.plus_thousand:
+                money += 1000;
+                break;
+        }
+        kolvo.setText(money + "");
+    }
 
 
     public void onMyButtonClick(View v) {
