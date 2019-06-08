@@ -14,7 +14,7 @@ public class Card extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_vizitka);
+        setContentView(R.layout.activity_card);
         getSupportActionBar().hide();
         setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         Toast.makeText(this, "Внимание. Музыка. ", Toast.LENGTH_SHORT).show();

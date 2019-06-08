@@ -26,14 +26,17 @@ public class Password extends AppCompatActivity {
         mBackgroundLinearLayout.setBackgroundColor(parsedColor);
 
         passwd = (EditText) findViewById(R.id.khg);
-    }
-    public void onMyButtonClck(View view){
-       passwordId = passwd.getText().toString();
-       if(passwordId.length() >= 4){
-        Intent intent = new Intent(this, Password2.class);
-        passwd.setText("");
-        startActivity(intent);
 
-       }
+        findViewById(R.id.password_enter)
+                .setOnClickListener((v) -> onMyButtonClck());
+    }
+
+    public void onMyButtonClck() {
+        passwordId = passwd.getText().toString();
+        if(passwordId.length() >= 4) {
+            Intent intent = new Intent(this, Password2.class);
+            passwd.setText("");
+            startActivity(intent);
+        }
     }
 }

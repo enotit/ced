@@ -4,7 +4,6 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -19,8 +18,9 @@ public class TestPassword extends AppCompatActivity {
         setContentView(R.layout.activity_test_passsword);
         getSupportActionBar().hide();
         et = findViewById(R.id.khg);
-        Button button = findViewById(R.id.button2);
-        button.setOnClickListener((v) -> {
+
+        findViewById(R.id.test_password_enter)
+                .setOnClickListener((v) -> {
             if(et.getText().toString().equals("")) {
                 Toast.makeText(this, "Введите ваш пароль.", Toast.LENGTH_SHORT).show();
             } else {
@@ -43,5 +43,4 @@ public class TestPassword extends AppCompatActivity {
         editor.putString("describe", Base.describe.getText().toString());
         editor.apply();
     }
-
 }

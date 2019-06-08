@@ -62,14 +62,13 @@
                     android:inputType="textCapWords" />
 
                 <Button
-                    android:id="@+id/button"
+                    android:id="@+id/enter_name_button"
                     style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="60dp"
                     android:layout_marginRight="5dp"
-                    android:onClick="onMyButtonClicked"
                     android:text="Далее" />
 
                 <TextView
