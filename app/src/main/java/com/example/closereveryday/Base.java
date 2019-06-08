@@ -3,6 +3,7 @@ package com.example.closereveryday;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
@@ -32,7 +33,7 @@ public class Base extends AppCompatActivity implements SomeDataRecyclerAdapter.O
     RecyclerView recyclerView;
 
     public DatabaseHelper databaseHelper;
-
+    MediaPlayer minusmoney;
     public static EditText nameid, describe, password, opi, kolvo;
     public static String names, describes, passwords, np, dp, pp,tms;
     final String SAVED_TEXT = "saved_text";
@@ -51,7 +52,7 @@ public class Base extends AppCompatActivity implements SomeDataRecyclerAdapter.O
         setContentView(R.layout.activity_osnova);
         getSupportActionBar().hide();
         setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-
+        startMusichi();
 
         BottomNavigationView bnv = (BottomNavigationView) findViewById(R.id.bottom_navigation);
         bnv.setOnNavigationItemSelectedListener(getBottomNavigationListener());
@@ -172,6 +173,7 @@ public class Base extends AppCompatActivity implements SomeDataRecyclerAdapter.O
 
         if(all) {
             Toast.makeText(this, "Вы ничего не изменили.", Toast.LENGTH_SHORT).show();
+            startMusicCancel();
         } else {
             Intent intent = new Intent(Base.this, TestPassword.class);
             startActivity(intent);
@@ -191,19 +193,37 @@ public class Base extends AppCompatActivity implements SomeDataRecyclerAdapter.O
     // 3 page
         public void rashodClick(View v){
 
-            if(opi.getText().toString().equals("") || kolvo.getText().toString().equals("")|| kolvo.getText().toString().equals("0"))
+            if(opi.getText().toString().equals("") || kolvo.getText().toString().equals("")|| kolvo.getText().toString().equals("0")){
                 Toast.makeText(this, "Пожалуйста введите данные.", Toast.LENGTH_SHORT).show();
+            startMusicCancel();}
             else{
+                startMusicmi();
         salam = Integer.parseInt(kolvo.getText().toString());
         salam = salam * (-1);
         textnull();
-            }
+            }    }
+    public void startMusicmi() {
+        minusmoney = MediaPlayer.create(this, R.raw.muza);
+        minusmoney.start();
     }
-
+    public void startMusicpri() {
+        minusmoney = MediaPlayer.create(this, R.raw.prihadi);
+        minusmoney.start();
+    }
+    public void startMusichi(){
+        minusmoney = MediaPlayer.create(this, R.raw.privet);
+        minusmoney.start();
+    }
+    public void startMusicCancel(){
+        minusmoney = MediaPlayer.create(this, R.raw.nodata);
+        minusmoney.start();
+    }
     public void prihodClick(View v){
         if(opi.getText().toString().equals("") || kolvo.getText().toString().equals("") || kolvo.getText().toString().equals("0")) {
             Toast.makeText(this, "Пожалуйста введите данные.", Toast.LENGTH_SHORT).show();
+            startMusicCancel();
         } else {
+            startMusicpri();
             salam = Integer.parseInt(kolvo.getText().toString());
             textnull();
         }

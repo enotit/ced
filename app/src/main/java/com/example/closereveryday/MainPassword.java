@@ -3,6 +3,7 @@ package com.example.closereveryday;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
@@ -22,6 +23,7 @@ public class MainPassword extends AppCompatActivity {
     private EditText et;
     private int in;
     private long millis, mil, nin;
+    MediaPlayer mPlayer;
     private TextView tv;
 
     @Override
@@ -62,6 +64,10 @@ public class MainPassword extends AppCompatActivity {
                 .setOnClickListener((v) -> onMyButtonClick());
     }
 
+    public void startMusicCancel(){
+        mPlayer = MediaPlayer.create(this, R.raw.otkazka);
+        mPlayer.start();
+    }
     public void onMyButtonClick(){
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(MainPassword.this);
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -77,6 +83,7 @@ public class MainPassword extends AppCompatActivity {
             finish();
             startActivity(intent);
         } else {
+            startMusicCancel();
             in += 1;
             et.setText("");
             if(in == 1) Toast.makeText(this, "Неверный пароль", Toast.LENGTH_LONG).show();

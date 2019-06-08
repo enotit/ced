@@ -33,6 +33,11 @@ public class Card extends AppCompatActivity {
         super.onDestroy();
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mPlayer.stop();
+    }
 
     public void startMusic() {
         mPlayer = MediaPlayer.create(this, R.raw.music);
