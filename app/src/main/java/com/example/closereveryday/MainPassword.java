@@ -46,15 +46,16 @@ public class MainPassword extends AppCompatActivity {
             if(ost == 0) {
                 Toast.makeText(this, "До окончания блокировки < минуты.", Toast.LENGTH_SHORT).show();
             } else {
-                if(ost == 1)
+                if(ost == 1) {
                     Toast.makeText(this, "Подождите ещё 1 минуту.", Toast.LENGTH_SHORT).show();
+                }
                 if(ost == 2 || ost == 3 || ost == 4) {
                     Toast.makeText(this, "Подождите ещё " + ost + " минуты.", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(this, "error time", Toast.LENGTH_SHORT).show();
-                    finish();
                 }
             }
+            finish();
         }
 
         findViewById(R.id.main_password_enter)
