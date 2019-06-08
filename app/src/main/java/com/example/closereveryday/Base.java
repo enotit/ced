@@ -222,7 +222,7 @@ public class Base extends AppCompatActivity implements SomeDataRecyclerAdapter.O
         recyclerAdapter.notifyDataSetChanged();
         opi.setText("");
         kolvo.setText("0");
-        Toast.makeText(this, "Successful, return app pls", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Successful.", Toast.LENGTH_SHORT).show();
     }
 
     public void getDates(){
