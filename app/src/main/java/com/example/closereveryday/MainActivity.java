@@ -26,12 +26,13 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        etText = (EditText) findViewById(R.id.nameid);
-
+        etText = findViewById(R.id.nameid);
+        findViewById(R.id.enter_name_button)
+                .setOnClickListener((v) -> onMyButtonClick());
     }
 
 
-       public void onMyButtonClick(View view){
+       public void onMyButtonClick(){
         if (etText.length() == 1|| etText.length() == 0){
             Toast.makeText(this, "Введите имя или же Ник.", Toast.LENGTH_LONG).show();
         }

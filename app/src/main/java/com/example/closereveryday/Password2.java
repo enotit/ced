@@ -30,9 +30,12 @@ public class Password2 extends AppCompatActivity {
         int parsedColor = Color.parseColor("#E4E4E4");
         mBackgroundLinearLayout.setBackgroundColor(parsedColor);
         passwd = findViewById(R.id.khg);
+
+        findViewById(R.id.password2_enter)
+                .setOnClickListener((v) -> onMyButtonClicked());
     }
 
-    public void onMyButtonClicked(View view){
+    public void onMyButtonClicked() {
         password = passwd.getText().toString();
         String raz = Password.passwordId;
         if(password.length() != 0) {
@@ -54,6 +57,7 @@ public class Password2 extends AppCompatActivity {
             }
         }
     }
+
     void finishes(){
         finish();
     } //FIXME need this really?

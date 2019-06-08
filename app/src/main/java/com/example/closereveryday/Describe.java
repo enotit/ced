@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -29,23 +30,25 @@ public class Describe extends AppCompatActivity {
 
         int parsedColor = Color.parseColor("#E4E4E4");
         mBackgroundLinearLayout.setBackgroundColor(parsedColor);
+        findViewById(R.id.describe_enter)
+                .setOnClickListener((v) -> onMyButtonCl());
     }
-    public void onMyButtonCl(View view){
+
+    public void onMyButtonCl(){
         ev = findViewById(R.id.khg);
         evi = findViewById(R.id.textView);
         text = ev.getText().toString();
-        if(text.length() == 0){
+        if(text.length() == 0) {
             evi.setText("Уверены, что хотите не ставить описание?");
-
-            if(s == 0){
+            if(s == 0) {
                 s = s + 1;
-            } else{dialogs();}
+            } else {
+                dialogs();
+            }
 
-
-        }else{ dialogs();
+        } else {
+            dialogs();
         }
-
-
     }
 
     public void dialogs() {

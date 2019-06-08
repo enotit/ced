@@ -43,7 +43,7 @@
                 android:inputType="text|textCapSentences" />
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/describe_enter"
                 style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

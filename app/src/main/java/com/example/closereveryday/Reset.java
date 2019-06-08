@@ -9,7 +9,7 @@ public class Reset extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sbros);
+        setContentView(R.layout.activity_reset);
         getSupportActionBar().hide();
     }
 
