@@ -17,6 +17,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:orientation="vertical" >
 
             <EditText
@@ -110,8 +111,18 @@
                     android:text="Получено" />
             </LinearLayout>
 
+            <Button
+                android:id="@+id/cancel_music"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:onClick="stopMusic"
+                android:gravity="center"
+                style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
+                android:text="Выключить музыку" />
+
         </LinearLayout>
     </ScrollView>
+
 
     <LinearLayout
         android:id="@+id/two"
@@ -124,116 +135,26 @@
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
+
     </LinearLayout>
+
 
     <ScrollView
         android:id="@+id/lat"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
         <LinearLayout
-
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/textView9"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginRight="5dp"
-                android:autoLink="web"
-                android:fontFamily="monospace"
-                android:gravity="center"
-                android:linksClickable="true"
-                android:text='Чтобы изменить, что-то изменяйте! Если, что-то не надо исправлять, то оставьте.'
-                android:textColor="@color/colorAccent"
-                android:textStyle="bold|italic" />
-
-            <TextView
-                android:id="@+id/textView13"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginRight="5dp"
-                android:autoLink="web"
-                android:fontFamily="monospace"
-                android:gravity="left"
-                android:linksClickable="true"
-                android:text="Имя"
-                android:textColor="@color/colorAccent"
-                android:textStyle="italic" />
-
-            <EditText
-                android:id="@+id/nameid4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="5dp"
-                android:ems="10"
-                android:inputType="textCapWords" />
-
-            <TextView
-                android:id="@+id/textView14"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginRight="5dp"
-                android:autoLink="web"
-                android:fontFamily="monospace"
-                android:gravity="left"
-                android:linksClickable="true"
-                android:text="Пароль"
-                android:textColor="@color/colorAccent"
-                android:textStyle="italic" />
-
-            <EditText
-                android:id="@+id/khg6"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginRight="5dp"
-                android:ems="10"
-                android:inputType="numberPassword" />
-
-            <TextView
-                android:id="@+id/textView15"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginRight="5dp"
-                android:autoLink="web"
-                android:fontFamily="monospace"
-                android:gravity="left"
-                android:linksClickable="true"
-                android:text="Описание"
-                android:textColor="@color/colorAccent"
-                android:textStyle="italic" />
-
-            <EditText
-                android:id="@+id/khg7"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginRight="5dp"
-                android:ems="10"
-                android:inputType="text|textCapSentences" />
-
             <Button
-                android:id="@+id/button5"
+                android:id="@+id/butSet"
                 style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
+                android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:onClick="onMyButtonClicked"
-                android:text="Подтвердить" />
+                android:onClick="changeSetting"
+                android:text="Настройки" />
 
             <Button
                 android:id="@+id/button4"
@@ -252,14 +173,7 @@
                 android:text="Сброс аккаунта"
                 android:onClick="Help"
                 style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"/>
-
-            <TextView
-                android:id="@+id/textView5"
-                android:layout_width="match_parent"
-                android:layout_marginTop="30dp"
-                android:layout_height="wrap_content"
-                android:text="" />
-        </LinearLayout>
+            </LinearLayout>
     </ScrollView>
 
     <android.support.design.widget.BottomNavigationView
@@ -273,5 +187,6 @@
         style="@style/Widget.Design.BottomNavigationView"
         app:itemIconTint="@drawable/nav_item_color_state"
         app:itemTextColor="@drawable/nav_item_color_state" />
+
 
 </android.support.design.widget.CoordinatorLayout>

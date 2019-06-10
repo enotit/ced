@@ -64,8 +64,8 @@ public class SomeDataRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
             ButterKnife.bind(this, itemView);
             delete.setOnClickListener(view -> {
                 onDeleteListener.onDelete(dataModels.get(getAdapterPosition()));
-                dataModels.remove(getAdapterPosition());
                 notifyItemRemoved(getAdapterPosition());
+                dataModels.remove(getAdapterPosition());
             });
         }
     }

@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".settings">
+    <ScrollView
+        android:id="@+id/lat"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="5dp"
+        android:autoLink="web"
+        android:fontFamily="monospace"
+        android:gravity="center"
+        android:linksClickable="true"
+        android:text='Чтобы изменить, что-то изменяйте! Если, что-то не надо исправлять, то оставьте.'
+        android:textColor="@color/colorAccent"
+        android:textStyle="bold|italic" />
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="5dp"
+        android:autoLink="web"
+        android:fontFamily="monospace"
+        android:gravity="left"
+        android:linksClickable="true"
+        android:text="Имя"
+        android:textColor="@color/colorAccent"
+        android:textStyle="italic" />
+
+    <EditText
+        android:id="@+id/nameid4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="5dp"
+        android:ems="10"
+        android:inputType="textCapWords" />
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="5dp"
+        android:autoLink="web"
+        android:fontFamily="monospace"
+        android:gravity="left"
+        android:linksClickable="true"
+        android:text="Пароль"
+        android:textColor="@color/colorAccent"
+        android:textStyle="italic" />
+
+    <EditText
+        android:id="@+id/khg6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="5dp"
+        android:ems="10"
+        android:inputType="numberPassword" />
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="5dp"
+        android:autoLink="web"
+        android:fontFamily="monospace"
+        android:gravity="left"
+        android:linksClickable="true"
+        android:text="Описание"
+        android:textColor="@color/colorAccent"
+        android:textStyle="italic" />
+
+    <EditText
+        android:id="@+id/khg7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="5dp"
+        android:ems="10"
+        android:inputType="text|textCapSentences" />
+
+        <Button
+            android:id="@+id/button5"
+            style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:onClick="onMyButtonClick"
+            android:text="Подтвердить" />
+
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="5dp"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+
+        <CheckBox
+            android:id="@+id/musicid"
+            android:checked="true"
+            android:textColor="@color/colorAccent"
+            android:fontFamily="monospace"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@drawable/checkbox_selector"
+            android:textStyle="italic"
+            android:text="   Музыка"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+        <Button
+            android:id="@+id/cancel_but"
+            style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:onClick="finishClick"
+            android:text="" />
+
+    </LinearLayout>
+    </ScrollView>
+
+</android.support.constraint.ConstraintLayout>

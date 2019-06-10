@@ -10,7 +10,8 @@
         android:roundIcon="@mipmap/logo_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Reset"></activity>
+        <activity android:name=".settings"></activity>
+        <activity android:name=".Reset" />
         <activity android:name=".Card" />
         <activity android:name=".TestPassword" />
         <activity

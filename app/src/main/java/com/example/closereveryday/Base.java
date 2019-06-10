@@ -13,9 +13,12 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import com.example.closereveryday.adapter.SomeDataRecyclerAdapter;
@@ -38,8 +41,8 @@ public class Base extends AppCompatActivity implements SomeDataRecyclerAdapter.O
     public static String names, describes, passwords, np, dp, pp,tms;
     final String SAVED_TEXT = "saved_text";
     public int salam, money;
-    public Boolean all;
-
+    public Boolean all, mus;
+    public Button bt;
 
     private LinearLayout mBackgroundLinearLayout;
     SharedPreferences sPref;
@@ -52,27 +55,16 @@ public class Base extends AppCompatActivity implements SomeDataRecyclerAdapter.O
         setContentView(R.layout.activity_osnova);
         getSupportActionBar().hide();
         setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        startMusichi();
 
         BottomNavigationView bnv = (BottomNavigationView) findViewById(R.id.bottom_navigation);
         bnv.setOnNavigationItemSelectedListener(getBottomNavigationListener());
+
+        bt = (Button) findViewById(R.id.cancel_music);
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(Base.this);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
         mBackgroundLinearLayout = (LinearLayout) findViewById(R.id.linearLayout);
-
-        names = sharedPreferences.getString("name","");
-        nameid = (EditText) findViewById(R.id.nameid4);
-        nameid.setText(names);
-
-        passwords = sharedPreferences.getString("password", "");
-        password = (EditText) findViewById(R.id.khg6);
-        password.setText(passwords);
-
-        describes = sharedPreferences.getString("describe", "");
-        describe = (EditText) findViewById(R.id.khg7);
-        describe.setText(describes);
 
         bnv.setSelectedItemId(R.id.action_money);
 
@@ -86,7 +78,19 @@ public class Base extends AppCompatActivity implements SomeDataRecyclerAdapter.O
         recyclerView.setLayoutManager(layoutManager);
         databaseHelper = App.getInstance().getDatabaseInstance();
 
+        checkMus();
+        buttonCancelMusic();
         recyclerAdapter = new SomeDataRecyclerAdapter(this, databaseHelper.getDataDao().getAllData());
+        startMusichi();
+    }
+
+    public void buttonCancelMusic(){
+        checkMus();
+        if(mus){
+            bt.setVisibility(View.VISIBLE);
+        }else{
+            bt.setVisibility(View.INVISIBLE);
+        }
     }
 
 
@@ -108,8 +112,9 @@ public class Base extends AppCompatActivity implements SomeDataRecyclerAdapter.O
     @NonNull
     private BottomNavigationView.OnNavigationItemSelectedListener getBottomNavigationListener() {
         final ScrollView sett = findViewById(R.id.lat);
-        final ScrollView money = findViewById(R.id.money);
         final LinearLayout two = findViewById(R.id.two);
+        final ScrollView money = findViewById(R.id.money);
+
         return new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -131,6 +136,7 @@ public class Base extends AppCompatActivity implements SomeDataRecyclerAdapter.O
                         money.setVisibility(View.VISIBLE);
                         sett.setVisibility(View.GONE);
                         two.setVisibility(View.GONE);
+                        buttonCancelMusic();
                         break;
 
                 }
@@ -157,27 +163,10 @@ public class Base extends AppCompatActivity implements SomeDataRecyclerAdapter.O
     }
 
 
-    public void onMyButtonClick(View v) {
-        all = true;
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(Base.this);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        names = sharedPreferences.getString("name","");
-        passwords = sharedPreferences.getString("password", "");
-        names = sharedPreferences.getString("name","");
-        np = nameid.getText().toString();
-        dp = password.getText().toString();
-        pp = describe.getText().toString();
-        if(!names.equals(np) && !describes.equals(pp) && !passwords.equals(dp)) {
-            all = false;
-        }
 
-        if(all) {
-            Toast.makeText(this, "Вы ничего не изменили.", Toast.LENGTH_SHORT).show();
-            startMusicCancel();
-        } else {
-            Intent intent = new Intent(Base.this, TestPassword.class);
-            startActivity(intent);
-        }
+    public void changeSetting(View v) {
+        Intent intent = new Intent(Base.this, settings.class);
+        startActivity(intent);
     }
 
     public void VizOsn(View v) {
@@ -203,20 +192,29 @@ public class Base extends AppCompatActivity implements SomeDataRecyclerAdapter.O
         textnull();
             }    }
     public void startMusicmi() {
+        checkMus();
+        if(mus){
         minusmoney = MediaPlayer.create(this, R.raw.muza);
         minusmoney.start();
+        }
     }
     public void startMusicpri() {
-        minusmoney = MediaPlayer.create(this, R.raw.prihadi);
-        minusmoney.start();
+        checkMus();
+        if(mus){minusmoney = MediaPlayer.create(this, R.raw.prihadi);
+        minusmoney.start();}
     }
     public void startMusichi(){
-        minusmoney = MediaPlayer.create(this, R.raw.privet);
-        minusmoney.start();
+        checkMus();
+        if(mus){minusmoney = MediaPlayer.create(this, R.raw.privet);
+        minusmoney.start(); }
     }
-    public void startMusicCancel(){
-        minusmoney = MediaPlayer.create(this, R.raw.nodata);
-        minusmoney.start();
+    public  void startMusicCancel(){
+        checkMus();
+        if(mus){minusmoney = MediaPlayer.create(this, R.raw.nodata);
+        minusmoney.start();}
+    }
+    public void stopMusic(View v){
+        minusmoney.stop();
     }
     public void prihodClick(View v){
         if(opi.getText().toString().equals("") || kolvo.getText().toString().equals("") || kolvo.getText().toString().equals("0")) {
@@ -243,6 +241,12 @@ public class Base extends AppCompatActivity implements SomeDataRecyclerAdapter.O
         opi.setText("");
         kolvo.setText("0");
         Toast.makeText(this, "Successful.", Toast.LENGTH_SHORT).show();
+    }
+
+    public void checkMus() {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(Base.this);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        mus = sharedPreferences.getBoolean("musBo",true);
     }
 
     public void getDates(){
