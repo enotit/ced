@@ -3,6 +3,7 @@ package com.example.closereveryday;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -19,6 +20,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.closereveryday.adapter.SomeDataRecyclerAdapter;
@@ -39,6 +41,7 @@ public class Base extends AppCompatActivity implements SomeDataRecyclerAdapter.O
     MediaPlayer minusmoney;
     public static EditText nameid, describe, password, opi, kolvo;
     public static String names, describes, passwords, np, dp, pp,tms;
+    public static TextView balance;
     final String SAVED_TEXT = "saved_text";
     public int salam, money;
     private long millis;
@@ -89,6 +92,8 @@ public class Base extends AppCompatActivity implements SomeDataRecyclerAdapter.O
         buttonCancelMusic();
         recyclerAdapter = new SomeDataRecyclerAdapter(this, databaseHelper.getDataDao().getAllData());
         startMusichi();
+
+        balance = (TextView) findViewById(R.id.Balance);
     }
 
     public void buttonCancelMusic(){
@@ -122,6 +127,7 @@ public class Base extends AppCompatActivity implements SomeDataRecyclerAdapter.O
         final LinearLayout two = findViewById(R.id.two);
         final ScrollView money = findViewById(R.id.money);
 
+
         return new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -130,6 +136,7 @@ public class Base extends AppCompatActivity implements SomeDataRecyclerAdapter.O
                         sett.setVisibility(View.VISIBLE);
                         money.setVisibility(View.GONE);
                         two.setVisibility(View.GONE);
+                        mus_click();
                         break;
 
                     case R.id.action_aim:
@@ -137,6 +144,8 @@ public class Base extends AppCompatActivity implements SomeDataRecyclerAdapter.O
                         sett.setVisibility(View.GONE);
                         money.setVisibility(View.GONE);
                         two.setVisibility(View.VISIBLE);
+                        set_Text_Sum();
+                        mus_click();
                         break;
 
                     case R.id.action_money:
@@ -144,6 +153,7 @@ public class Base extends AppCompatActivity implements SomeDataRecyclerAdapter.O
                         sett.setVisibility(View.GONE);
                         two.setVisibility(View.GONE);
                         buttonCancelMusic();
+                        mus_click();
                         break;
 
                 }
@@ -169,8 +179,40 @@ public class Base extends AppCompatActivity implements SomeDataRecyclerAdapter.O
         kolvo.setText(money + "");
     }
 
+    public void mus_click(){
+        checkMus();
+        if(mus){
+            int random_number1 = 1 + (int) (Math.random() * 3);
+            switch (random_number1){
+            case 1:
+            minusmoney = MediaPlayer.create(this, R.raw.click_1);
+            break;
+            case 2:
+             minusmoney = MediaPlayer.create(this, R.raw.click_2);
+             break;
+             case 3:
+                 minusmoney = MediaPlayer.create(this, R.raw.click_3);
+                 break;
+            }
+
+            minusmoney.start();
+        }
+    }
 
 
+    public void set_Text_Sum(){
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(Base.this);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        int her = sharedPreferences.getInt("sum", 0);
+        if(her < 0){
+        balance.setTextColor(Color.rgb(200,0,0));
+        balance.setText("Баланс: " + her);}
+        else{
+            balance.setTextColor(Color.rgb(0,150,60));
+            balance.setText("Баланс: " + her);
+
+        }
+    }
     public void changeSetting(View v) {
         Intent intent = new Intent(Base.this, settings.class);
         startActivity(intent);
@@ -238,6 +280,10 @@ public class Base extends AppCompatActivity implements SomeDataRecyclerAdapter.O
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(Base.this);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         getDates();
+        int her = sharedPreferences.getInt("sum", 0);
+        her = salam + her;
+        editor.putInt("sum", her);
+
         DataModel model = new DataModel();
         model.setTitle(salam);
         model.setDescription(opi.getText().toString());
@@ -245,9 +291,11 @@ public class Base extends AppCompatActivity implements SomeDataRecyclerAdapter.O
         databaseHelper.getDataDao().insert(model);
         recyclerAdapter.addItem(model);
         recyclerAdapter.notifyDataSetChanged();
+
         opi.setText("");
         kolvo.setText("0");
         Toast.makeText(this, "Successful.", Toast.LENGTH_SHORT).show();
+        editor.apply();
     }
 
     public void checkMus() {
