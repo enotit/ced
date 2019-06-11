@@ -41,6 +41,7 @@ public class Base extends AppCompatActivity implements SomeDataRecyclerAdapter.O
     public static String names, describes, passwords, np, dp, pp,tms;
     final String SAVED_TEXT = "saved_text";
     public int salam, money;
+    private long millis;
     public Boolean all, mus;
     public Button bt;
 
@@ -61,10 +62,16 @@ public class Base extends AppCompatActivity implements SomeDataRecyclerAdapter.O
 
         bt = (Button) findViewById(R.id.cancel_music);
 
+
+
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(Base.this);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
         mBackgroundLinearLayout = (LinearLayout) findViewById(R.id.linearLayout);
+
+        getDates();
+        editor.putLong("enter_time",millis + 120000);
+        editor.apply();
 
         bnv.setSelectedItemId(R.id.action_money);
 
@@ -252,6 +259,7 @@ public class Base extends AppCompatActivity implements SomeDataRecyclerAdapter.O
     public void getDates(){
         Date date = new Date();
         tms = date.toString();
+        millis = date.getTime();
     }
 
 }

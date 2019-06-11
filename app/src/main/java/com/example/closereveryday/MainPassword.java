@@ -22,8 +22,9 @@ public class MainPassword extends AppCompatActivity {
     private LinearLayout mBackgroundLinearLayout;
     private EditText et;
     private int in;
-    private long millis, mil, nin;
+    private long millis, mil, nin, enter_time;
     MediaPlayer mPlayer;
+    private Boolean mus;
     private TextView tv;
 
     @Override
@@ -37,12 +38,19 @@ public class MainPassword extends AppCompatActivity {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(MainPassword.this);
         String de = sharedPreferences.getString("describe", "");
 
+
+        mus = sharedPreferences.getBoolean("musBo",true);
+
+
+        enter_time = sharedPreferences.getLong("enter_time", 0);
+
         TextView tv = findViewById(R.id.textView4);
         if(de.equals("")) tv.setText("Описание отсутствует, измените в настройках.");
         else tv.setText(de);
 
         nin = sharedPreferences.getLong("block", 0);
         getDates();
+        if(enter_time < millis){
         if(!(millis > nin)) {
             long ost = (nin - millis) / 60000;
             if(ost == 0) {
@@ -61,12 +69,19 @@ public class MainPassword extends AppCompatActivity {
         }
 
         findViewById(R.id.main_password_enter)
-                .setOnClickListener((v) -> onMyButtonClick());
+                .setOnClickListener((v) -> onMyButtonClick());}
+        else{
+            Intent intent = new Intent(this, Base.class);
+            finish();
+            startActivity(intent);
+        }
     }
 
     public void startMusicCancel(){
+        if(mus){
         mPlayer = MediaPlayer.create(this, R.raw.otkazka);
-        mPlayer.start();
+        mPlayer.start();}
+
     }
     public void onMyButtonClick(){
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(MainPassword.this);

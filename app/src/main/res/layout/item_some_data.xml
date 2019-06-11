@@ -38,7 +38,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            android:text="del"
             android:textColor="@android:color/black"
             android:textSize="18sp" />
 

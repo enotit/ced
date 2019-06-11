@@ -48,6 +48,11 @@ public class settings extends AppCompatActivity {
 
         musicCheckBox = (CheckBox)findViewById(R.id.musicid);
 
+        if(mus){
+            musicCheckBox.setChecked(true);
+        }else{
+            musicCheckBox.setChecked(false);
+        }
     }
     public void onMyButtonClick(View v) {
         all = true;
